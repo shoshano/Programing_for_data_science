@@ -1,2 +1,4 @@
+/.gitignore
 /Lectures
 /.venv
+/comments.txt
