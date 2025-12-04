@@ -21,3 +21,15 @@ set
 configuration and the full training set on the test set
 6 Generate a new model from the full dataset using the same
 configuration2
+
+
+1. Preprocesing:
+    a. delete missing data
+    b. freatures extraction RDKit
+    c. one-hot + normalizatin + missing values
+    d. SMOTH algorithm
+2. Second eda 
+3. Model building  
+4. Model selecting
+5. Paramiter selection +  cross validation
+5. Model chcecking + results + discution 
