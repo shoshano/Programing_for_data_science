@@ -30,6 +30,10 @@ configuration2
     d. SMOTH algorithm
 2. Second eda 
 3. Model building  
+    - Naive baies 
+    - Decision tree
+    - Random forest 
+    - MLPClasiffiers
 4. Model selecting
 5. Paramiter selection +  cross validation
 5. Model chcecking + results + discution 
