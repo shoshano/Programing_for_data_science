@@ -1,0 +1,39 @@
+Data set:
+- with classes so probably we need supervised learning 
+- EDA
+- preprocesing 
+- model choosing 
+- statistical test?
+- AUC ROC value for all tested models 
+
+
+Recipe for selecting a model and estimating its
+performance using a hold-out set
+1 Divide the dataset into a training and test set -- done
+2 Further divide the training set into a proper training set and
+validation set1
+3 Use the various data preparation techniques, learning
+algorithms and hyper-parameters to generate models from the
+proper training set
+4 Find the best performing configuration w.r.t. the validation
+set
+5 Measure the performance of the model trained using this
+configuration and the full training set on the test set
+6 Generate a new model from the full dataset using the same
+configuration2
+
+
+1. Preprocesing:
+    a. delete missing data
+    b. freatures extraction RDKit
+    c. one-hot + normalizatin + missing values
+    d. SMOTH algorithm
+2. Second eda 
+3. Model building  
+    - Naive baies 
+    - Decision tree
+    - Random forest 
+    - MLPClasiffiers
+4. Model selecting
+5. Paramiter selection +  cross validation
+5. Model chcecking + results + discution 
