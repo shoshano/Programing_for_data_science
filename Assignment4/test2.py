@@ -16,17 +16,17 @@ print("\nSTEP 1: Load and Clean Data")
 print("-" * 70)
 
 # Load your data
-data = pd.read_csv('.\\Assignment4\\datasets\\training_smiles.csv')  # Change to your file path
+data = pd.read_csv('.\\Assignment4\\datasets\\test_smiles.csv')  # Change to your file path
 print(f"Original dataset shape: {data.shape}")
 print(f"Columns: {data.columns.tolist()}")
 
 # Remove duplicates and conflicting labels
-duplicates = data[data.duplicated(subset="SMILES", keep=False)].sort_values(by="SMILES")
-conflicting_smiles = duplicates.groupby('SMILES').filter(lambda x: x['ACTIVE'].nunique() > 1)
+# duplicates = data[data.duplicated(subset="SMILES", keep=False)].sort_values(by="SMILES")
+# conflicting_smiles = duplicates.groupby('SMILES').filter(lambda x: x['ACTIVE'].nunique() > 1)
 
-data_clean = data[~data['SMILES'].isin(conflicting_smiles['SMILES'])]
-data_clean = data_clean.drop_duplicates(subset='SMILES', keep='first')
-
+# data_clean = data[~data['SMILES'].isin(conflicting_smiles['SMILES'])]
+# data_clean = data_clean.drop_duplicates(subset='SMILES', keep='first')
+data_clean = data
 print(f"After removing duplicates/conflicts: {data_clean.shape}")
 print(f"Removed {len(data) - len(data_clean)} rows")
 
@@ -144,10 +144,10 @@ print(f"Extracted {len(fragment_names)} fragment features")
 
 # ============ STEP 6: EXTRACT MORGAN FINGERPRINTS ============
 print("\n" + "="*70)
-print("STEP 6: Extract Morgan Fingerprints (Radius=2, 1024 bits)")
+print("STEP 6: Extract Morgan Fingerprints (Radius=2, 128 bits)")
 print("-" * 70)
 
-def compute_morgan_fp(mol, radius=2, nBits=1024):
+def compute_morgan_fp(mol, radius=2, nBits=128):
     """Extract Morgan fingerprint"""
     if mol is None:
         return [0] * nBits
@@ -191,13 +191,13 @@ print(f"  - Fragments: {len(fragment_names)}")
 print(f"  - Morgan fingerprints: 1024")
 
 # Add target variable
-y = valid_data['ACTIVE'].values
-X_combined['ACTIVE'] = y
+# y = valid_data['ACTIVE'].values
+# X_combined['ACTIVE'] = y
 
-print(f"\nFinal dataset shape: {X_combined.shape}")
-print(f"Class distribution:")
-print(f"  Class 0 (Inactive): {(y == 0).sum()} ({(y == 0).sum()/len(y)*100:.1f}%)")
-print(f"  Class 1 (Active): {(y == 1).sum()} ({(y == 1).sum()/len(y)*100:.1f}%)")
+# print(f"\nFinal dataset shape: {X_combined.shape}")
+# print(f"Class distribution:")
+# print(f"  Class 0 (Inactive): {(y == 0).sum()} ({(y == 0).sum()/len(y)*100:.1f}%)")
+# print(f"  Class 1 (Active): {(y == 1).sum()} ({(y == 1).sum()/len(y)*100:.1f}%)")
 
 # ============ STEP 8: STANDARDIZE DESCRIPTORS ============
 print("\n" + "="*70)
@@ -218,7 +218,7 @@ print("STEP 9: Save Preprocessed Data")
 print("-" * 70)
 
 # Save to CSV
-output_file = 'preprocessed_smiles_data.csv'
+output_file = 'preprocessed_smiles_testdata128.csv'
 X_combined.to_csv(output_file, index=False)
 print(f"✓ Saved: {output_file}")
 
@@ -231,5 +231,5 @@ print("PREPROCESSING COMPLETE!")
 print("="*70)
 print(f"\nYou can now use this data for training:")
 print(f"  preprocessed_data = pd.read_csv('{output_file}')")
-print(f"  X = preprocessed_data.drop('ACTIVE', axis=1)")
-print(f"  y = preprocessed_data['ACTIVE']")
+# print(f"  X = preprocessed_data.drop('ACTIVE', axis=1)")
+# print(f"  y = preprocessed_data['ACTIVE']")
